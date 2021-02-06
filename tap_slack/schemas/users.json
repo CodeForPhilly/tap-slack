@@ -48,8 +48,7 @@
       "type": ["null", "boolean"]
     },
     "updated": {
-      "type": ["null", "string"],
-      "format": "date-time"
+      "type": ["null", "string"]
     },
     "is_app_user": {
       "type": ["null", "boolean"]

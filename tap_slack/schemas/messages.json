@@ -68,8 +68,7 @@
           "type": [
             "null",
             "string"
-          ],
-          "format": "date-time"
+          ]
         }
       },
       "type": [
@@ -150,8 +149,7 @@
       "type": [
         "null",
         "string"
-      ],
-      "format": "date-time"
+      ]
     },
     "latest_reply": {
       "type": [
@@ -311,8 +309,7 @@
       "type": [
         "null",
         "string"
-      ],
-      "format": "date-time"
+      ]
     },
     "type": {
       "type": [

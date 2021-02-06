@@ -6,7 +6,7 @@ import time
 
 import backoff
 import singer
-from slack.errors import SlackApiError
+from slack_sdk.errors import SlackApiError
 
 LOGGER = singer.get_logger()
 
@@ -23,6 +23,7 @@ class SlackClient(object):
                 delay = int(err.response.headers.get("Retry-After", "0"))
             else:
                 raise err
+            LOGGER.info("wait: Retry-After {} seconds".format(delay))
             time.sleep(delay)
 
     @backoff.on_exception(backoff.constant,

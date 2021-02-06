@@ -9,8 +9,7 @@
       "type": [
         "null",
         "string"
-      ],
-      "format": "date-time"
+      ]
     },
     "creator": {
       "type": [
@@ -82,8 +81,7 @@
       "type": [
         "null",
         "string"
-      ],
-      "format": "date-time"
+      ]
     },
     "members": {
       "items": {

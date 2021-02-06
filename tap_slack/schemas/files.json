@@ -23,15 +23,13 @@
       "type": [
         "null",
         "string"
-      ],
-      "format": "date-time"
+      ]
     },
     "date_delete": {
       "type": [
         "null",
         "string"
-      ],
-      "format": "date-time"
+      ]
     },
     "display_as_bot": {
       "type": [
@@ -325,7 +323,7 @@
       ]
     },
     "thumb_64": {
-      "format": "uri",
+     "format": "uri",
       "type": [
         "null",
         "string"
@@ -405,8 +403,7 @@
       "type": [
         "null",
         "string"
-      ],
-      "format": "date-time"
+      ]
     },
     "title": {
       "type": [
@@ -418,8 +415,7 @@
       "type": [
         "null",
         "string"
-      ],
-      "format": "date-time"
+      ]
     },
     "url_private": {
       "format": "uri",
