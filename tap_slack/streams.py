@@ -327,7 +327,7 @@ class UsersStream(SlackStream):
         bookmark = singer.get_bookmark(state=self.state, tap_stream_id=self.name,
                                        key=self.replication_key)
         if bookmark is None:
-            bookmark = self.config.get('start_date')
+            bookmark = strptime_to_utc(self.config.get('start_date')).timestamp()
         new_bookmark = bookmark
 
         # pylint: disable=unused-variable
@@ -341,11 +341,8 @@ class UsersStream(SlackStream):
                                                        date_fields=self.date_fields)
                     for user in transformed_users:
                         with singer.Transformer(
-                                integer_datetime_fmt="unix-seconds-integer-datetime-parsing") \
-                                as transformer:
-                            transformed_record = transformer.transform(data=user, schema=schema,
-                                                                       metadata=metadata.to_map(
-                                                                           mdata))
+                                integer_datetime_fmt="unix-seconds-integer-datetime-parsing") as transformer:
+                            transformed_record = transformer.transform(data=user, schema=schema, metadata=metadata.to_map(mdata))
                             new_bookmark = max(new_bookmark, transformed_record.get('updated'))
                             if transformed_record.get('updated') > bookmark:
                                 if self.write_to_singer:

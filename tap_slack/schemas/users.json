@@ -48,7 +48,7 @@
       "type": ["null", "boolean"]
     },
     "updated": {
-      "type": ["null", "string"]
+      "type": ["null", "integer"]
     },
     "is_app_user": {
       "type": ["null", "boolean"]
