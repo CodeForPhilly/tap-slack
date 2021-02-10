@@ -18,7 +18,8 @@
       "type": ["null", "boolean"]
     },
     "created": {
-      "type": ["null", "string"]
+      "type": ["null", "string"],
+      "format": "date-time"
     },
     "creator": {
       "type": ["null", "string"]
@@ -30,7 +31,8 @@
       "type": ["null", "boolean"]
     },
     "unlinked": {
-      "type": ["null", "string"]
+      "type": ["null", "string"],
+      "format": "date-time"
     },
     "name_normalized": {
       "type": ["null", "string"]
@@ -87,7 +89,8 @@
           "type": ["null", "string"]
         },
         "last_set": {
-          "type": ["null", "string"]
+          "type": ["null", "string"],
+          "format": "date-time"
         }
       }
     },
@@ -101,7 +104,8 @@
           "type": ["null", "string"]
         },
         "last_set": {
-          "type": ["null", "string"]
+          "type": ["null", "string"],
+          "format": "date-time"
         }
       }
     },

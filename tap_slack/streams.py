@@ -266,8 +266,7 @@ class ConversationHistoryStream(SlackStream):
                                                             ts=data.get('thread_ts'))
                                         threads_stream.write_state()
                                     with singer.Transformer(
-                                            integer_datetime_fmt=
-                                            "unix-seconds-integer-datetime-parsing"
+                                            integer_datetime_fmt=singer.UNIX_SECONDS_INTEGER_DATETIME_PARSING
                                     ) as transformer:
                                         transformed_record = transformer.transform(
                                             data=data,
@@ -327,7 +326,7 @@ class UsersStream(SlackStream):
         bookmark = singer.get_bookmark(state=self.state, tap_stream_id=self.name,
                                        key=self.replication_key)
         if bookmark is None:
-            bookmark = strptime_to_utc(self.config.get('start_date')).timestamp()
+            bookmark = strptime_to_utc(self.config.get('start_date'))
         new_bookmark = bookmark
 
         # pylint: disable=unused-variable
@@ -341,10 +340,14 @@ class UsersStream(SlackStream):
                                                        date_fields=self.date_fields)
                     for user in transformed_users:
                         with singer.Transformer(
-                                integer_datetime_fmt="unix-seconds-integer-datetime-parsing") as transformer:
-                            transformed_record = transformer.transform(data=user, schema=schema, metadata=metadata.to_map(mdata))
-                            new_bookmark = max(new_bookmark, transformed_record.get('updated'))
-                            if transformed_record.get('updated') > bookmark:
+                                integer_datetime_fmt=singer.UNIX_SECONDS_INTEGER_DATETIME_PARSING) as transformer:
+                            transformed_record = transformer.transform(data=user, schema=schema,
+                                                                       metadata=metadata.to_map(
+                                                                           mdata))
+
+                            updated = strptime_to_utc(transformed_record.get('updated'))
+                            new_bookmark = max(new_bookmark, updated)
+                            if updated > bookmark:
                                 if self.write_to_singer:
                                     singer.write_record(stream_name=self.name,
                                                         time_extracted=singer.utils.now(),
@@ -352,7 +355,7 @@ class UsersStream(SlackStream):
                                     counter.increment()
 
         self.state = singer.write_bookmark(state=self.state, tap_stream_id=self.name,
-                                           key=self.replication_key, val=new_bookmark)
+                                           key=self.replication_key, val=singer.strftime(new_bookmark))
 
 
 # ThreadsStream = Slack Message Threads (Replies to Slack message)
