@@ -23,7 +23,8 @@
       "type": [
         "null",
         "string"
-      ]
+      ],
+      "format": "date-time"
     },
     "date_delete": {
       "type": [
@@ -403,7 +404,8 @@
       "type": [
         "null",
         "string"
-      ]
+      ],
+      "format": "date-time"
     },
     "title": {
       "type": [
@@ -415,7 +417,8 @@
       "type": [
         "null",
         "string"
-      ]
+      ],
+      "format": "date-time"
     },
     "url_private": {
       "format": "uri",
