@@ -327,6 +327,10 @@ class UsersStream(SlackStream):
                                        key=self.replication_key)
         if bookmark is None:
             bookmark = strptime_to_utc(self.config.get('start_date'))
+        else:
+            # bookmark from singer is a string
+            bookmark = strptime_to_utc(bookmark)
+
         new_bookmark = bookmark
 
         # pylint: disable=unused-variable
